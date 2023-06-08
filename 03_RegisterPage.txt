@@ -1,0 +1,92 @@
+
+#******************** Settings ************************
+
+*** Settings ***
+
+
+Documentation	Testing the register functionality. Register Test scenario with valid and invalid credentials.
+
+
+Pre Condition	Open Browser
+Post Condition	Close All Browsers
+Tags
+
+#******************* Common Variables ********************
+
+*** Variables ***
+
+# NOTE: Please Remove your login credential before uploading Assignments
+
+
+RegisterUrl = https://gitlab.com/users/sign_up
+FirstName = Gerda
+LastName = Runthal
+Username = gerdarunthal
+Email = 2107851@laurea.fi
+Password = QQY7xn67VUVwcF#
+DifferentEmail = gerda.runthal@student.laurea.fi
+
+
+#******************** Test Cases *************************
+
+*** Test Case ***
+
+# TODO: Write Positive and Negative Test Cases and Test Process steps
+
+# Positive Test
+
+
+	Register user with valid username and password 
+	-	Navigate To Register Page  RegisterUrl
+	-	Input First Name FirstName
+	-	Input Last Name Lastname
+ 	-	Input Username  UserName
+	-	Input Email Email
+    	-	Input Password  Password
+    	-	Submit Register Form
+    	-	Verify Page Should Contain Welcome page 
+
+# Negative Test examples are below write test process steps for each below test case
+
+	Register user with same above username
+	-	Navigate To Register Page  RegisterUrl
+	-	Input First Name FirstName
+	-	Input Last Name Lastname
+ 	-	Input Username  UserName
+	-	Input Email DifferentEmail
+    	-	Input Password  Password
+    	-	Submit Register Form
+    	-	Verify Page Should Contain Username has already been taken.
+
+	Register user with empty password
+	-	Navigate To Register Page  RegisterUrl
+	-	Input First Name FirstName
+	-	Input Last Name Lastname
+ 	-	Input Username  UserName
+	-	Input Email Email
+    	-	Input Password Empty
+    	-	Submit Register Form
+    	-	Verify That Error message should show Minimum length is 8 characters.
+
+
+	Register user with invalid email
+	-	Navigate To Register Page  RegisterUrl
+	-	Input First Name FirstName
+	-	Input Last Name Lastname
+ 	-	Input Username  UserName
+	-	Input Email Empty
+    	-	Input Password  Password
+    	-	Submit Register Form
+    	-	Verify That Error message should show Please provide a valid email address.
+
+
+	Register user Without recaptcha
+
+	-	Navigate To Register Page  RegisterUrl
+	-	Input First Name FirstName
+	-	Input Last Name Lastname
+ 	-	Input Username  UserName
+	-	Input Email Email
+    	-	Input Password  Password
+    	-	Submit Register Form
+    	-	Verify Page Should Contain Welcome page 
